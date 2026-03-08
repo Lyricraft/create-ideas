@@ -14,4 +14,8 @@ public final class Constants {
     // 鼓风机批量处理的最大经验产出概率，如大于此值则调整单次产出数量而非使用更高概率。
     public static final float BULK_PROCESSING_EXTRA_EXP_MAX_P = 0.75f;
 
+    // 网络应力交流
+    public static final int NETWORK_STRESS_ASKER_COOLDOWN_TICKS = 80; // 查询冷却时间
+    public static final int NETWORK_STRESS_ASKER_CACHE_TICKS = 200; // 查询缓存时间
+
 }

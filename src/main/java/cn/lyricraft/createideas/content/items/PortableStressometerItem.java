@@ -5,6 +5,8 @@ import cn.lyricraft.createideas.CreateIdeas;
 import cn.lyricraft.createideas.api.equipment.goggles.IGiveCustomOverlayIcon;
 import cn.lyricraft.createideas.api.equipment.goggles.IGiveHoveringInformation;
 import cn.lyricraft.createideas.configs.SyncConfig;
+import cn.lyricraft.createideas.foundation.kinetics.networkStressCommunication.NetworkStressAnswerPayload;
+import cn.lyricraft.createideas.foundation.kinetics.networkStressCommunication.NetworkStressAsker;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.kinetics.KineticNetwork;
 import com.simibubi.create.content.kinetics.base.IRotate;
@@ -46,41 +48,45 @@ public class PortableStressometerItem extends Item implements IGiveHoveringInfor
                 CreateLang.translate("gui.stressometer.title")
                         .style(ChatFormatting.GRAY)
                         .forGoggles(tooltip);
-                // 获取应力网络
-                KineticNetwork network = Create.TORQUE_PROPAGATOR.getOrCreateNetworkFor(kineticBe);
-                if (network == null || kineticBe.getTheoreticalSpeed() == 0)
-                    // 获取不到应力网络或无旋转
-                    CreateLang.text(TooltipHelper.makeProgressBar(3, 0))
-                            .translate("gui.stressometer.no_rotation")
-                            .style(ChatFormatting.DARK_GRAY)
-                            .forGoggles(tooltip);
+                // 有无旋转
+                if (kineticBe.getTheoreticalSpeed() == 0) noTheoreticalSpeed(tooltip);
                 else {
-                    // 获取得到应力网络且有旋转
-                    double capacity = network.calculateCapacity();
-                    double stress = network.calculateStress();
-                    double stressFraction = stress / (capacity == 0 ? 1 : capacity);
-                    IRotate.StressImpact.getFormattedStressText(stressFraction)
-                            .forGoggles(tooltip);
-                    CreateLang.translate("gui.stressometer.capacity")
-                            .style(ChatFormatting.GRAY)
-                            .forGoggles(tooltip);
+                    // 有旋转
+                    if (NetworkStressAsker.ask(kineticBe)){
+                        // 已回答
+                        NetworkStressAnswerPayload.Answer answer = NetworkStressAsker.getLastAnswer();
+                        double capacity = answer.capacity();
+                        double stress = answer.stress();
+                        double stressFraction = stress / (capacity == 0 ? 1 : capacity);
+                        if (capacity > 0){
+                            // 网络应力
+                            IRotate.StressImpact.getFormattedStressText(stressFraction)
+                                    .forGoggles(tooltip);
+                            CreateLang.translate("gui.stressometer.capacity")
+                                    .style(ChatFormatting.GRAY)
+                                    .forGoggles(tooltip);
 
-                    // 剩余应力
-                    double remainingCapacity = capacity - stress;
+                            // 剩余应力
+                            double remainingCapacity = capacity - stress;
 
-                    LangBuilder su = CreateLang.translate("generic.unit.stress");
-                    LangBuilder stressTip = CreateLang.number(remainingCapacity)
-                            .add(su)
-                            .style(IRotate.StressImpact.of(stressFraction)
-                                    .getRelativeColor());
+                            LangBuilder su = CreateLang.translate("generic.unit.stress");
+                            LangBuilder stressTip = CreateLang.number(remainingCapacity)
+                                    .add(su)
+                                    .style(IRotate.StressImpact.of(stressFraction)
+                                            .getRelativeColor());
 
-                    if (remainingCapacity != capacity)
-                        stressTip.text(ChatFormatting.GRAY, " / ")
-                                .add(CreateLang.number(capacity)
-                                        .add(su)
-                                        .style(ChatFormatting.DARK_GRAY));
+                            if (remainingCapacity != capacity)
+                                stressTip.text(ChatFormatting.GRAY, " / ")
+                                        .add(CreateLang.number(capacity)
+                                                .add(su)
+                                                .style(ChatFormatting.DARK_GRAY));
 
-                    stressTip.forGoggles(tooltip, 1);
+                            stressTip.forGoggles(tooltip, 1);
+                        } else noTheoreticalSpeed(tooltip);
+                    } else {
+                        // 未回答
+                        tooltip.addLast(Component.literal("测量中..." + NetworkStressAsker.getRestTime()));
+                    }
                 }
             }
             // 处理转速
@@ -100,4 +106,10 @@ public class PortableStressometerItem extends Item implements IGiveHoveringInfor
         return AllItems.PORTABLE_STRESSOMETER_ITEM.toStack();
     }
 
+    public void noTheoreticalSpeed(List<Component> tooltip){
+        CreateLang.text(TooltipHelper.makeProgressBar(3, 0))
+                .translate("gui.stressometer.no_rotation")
+                .style(ChatFormatting.DARK_GRAY)
+                .forGoggles(tooltip);
+    }
 }
