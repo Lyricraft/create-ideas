@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "package": "cn.lyricraft.createideas.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "create.funProcessing.BlastingTypeMixin",
+    "create.funProcessing.SmokingTypeMixin",
+    "create.jei.ProcessingViaFanCategoryMixin",
+    "create.kinetics.KineticBlockEntityAccessor"
+  ],
+  "server": [
+  ],
+  "client": [
+    "create.goggles.GoggleOverlayRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "create:haunting",
+  "ingredients": [
+    {
+      "item": "minecraft:amethyst_shard"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:echo_shard"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "create_ideas:config_enabled",
+      "path": "common.recipes.hauntingRecipes.hauntingRecipeAmethystShard"
+    }
+  ]
+}

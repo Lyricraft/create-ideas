@@ -1,0 +1,19 @@
+{
+  "type": "create:haunting",
+  "ingredients": [
+    {
+      "item": "minecraft:bricks"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:red_nether_bricks"
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "create_ideas:config_enabled",
+      "path": "common.recipes.hauntingRecipes.hauntingRecipeBricks"
+    }
+  ]
+}

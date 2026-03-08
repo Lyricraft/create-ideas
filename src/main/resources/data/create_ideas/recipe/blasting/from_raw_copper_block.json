@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 900,
+  "experience": 8.4,
+  "ingredient": {
+    "item": "minecraft:raw_copper_block"
+  },
+  "result": {
+    "id": "minecraft:copper_block"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "create_ideas:config_enabled",
+      "path": "common.recipes.blastRecipesRawOreBlocks"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "create:haunting",
+  "ingredients": [
+    {
+      "item": "minecraft:lapis_block"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:prismarine"
+    },
+    {
+      "chance": 0.8,
+      "id": "minecraft:prismarine_crystals",
+      "count": 2
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "create_ideas:config_enabled",
+      "path": "common.recipes.hauntingRecipes.hauntingRecipeBricks"
+    }
+  ]
+}
