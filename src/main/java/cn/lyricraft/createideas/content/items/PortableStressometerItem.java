@@ -5,7 +5,8 @@ import cn.lyricraft.createideas.CreateIdeas;
 import cn.lyricraft.createideas.api.equipment.goggles.IGiveCustomOverlayIcon;
 import cn.lyricraft.createideas.api.equipment.goggles.IGiveHoveringInformation;
 import cn.lyricraft.createideas.configs.SyncConfig;
-import cn.lyricraft.createideas.mixin.create.kinetics.KineticBlockEntityAccessor;
+import com.simibubi.create.Create;
+import com.simibubi.create.content.kinetics.KineticNetwork;
 import com.simibubi.create.content.kinetics.base.IRotate;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.gauge.SpeedGaugeBlockEntity;
@@ -42,26 +43,29 @@ public class PortableStressometerItem extends Item implements IGiveHoveringInfor
                     .translate("gui.overlay.portable_gauge.info_header").forGoggles(tooltip);
             // 处理应力
             if(showStressInfo){
-                double capacity = ((KineticBlockEntityAccessor) kineticBe).getCapacity();
-                double stress = ((KineticBlockEntityAccessor) kineticBe).getStress();
-                double stressFraction = stress / (capacity == 0 ? 1 : capacity);
-
                 CreateLang.translate("gui.stressometer.title")
                         .style(ChatFormatting.GRAY)
                         .forGoggles(tooltip);
-
-                if (kineticBe.getTheoreticalSpeed() == 0)
+                // 获取应力网络
+                KineticNetwork network = Create.TORQUE_PROPAGATOR.getOrCreateNetworkFor(kineticBe);
+                if (network == null || kineticBe.getTheoreticalSpeed() == 0)
+                    // 获取不到应力网络或无旋转
                     CreateLang.text(TooltipHelper.makeProgressBar(3, 0))
                             .translate("gui.stressometer.no_rotation")
                             .style(ChatFormatting.DARK_GRAY)
                             .forGoggles(tooltip);
                 else {
+                    // 获取得到应力网络且有旋转
+                    double capacity = network.calculateCapacity();
+                    double stress = network.calculateStress();
+                    double stressFraction = stress / (capacity == 0 ? 1 : capacity);
                     IRotate.StressImpact.getFormattedStressText(stressFraction)
                             .forGoggles(tooltip);
                     CreateLang.translate("gui.stressometer.capacity")
                             .style(ChatFormatting.GRAY)
                             .forGoggles(tooltip);
 
+                    // 剩余应力
                     double remainingCapacity = capacity - stress;
 
                     LangBuilder su = CreateLang.translate("generic.unit.stress");
