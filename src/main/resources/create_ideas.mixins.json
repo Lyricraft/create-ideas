@@ -5,8 +5,7 @@
   "mixins": [
     "create.funProcessing.BlastingTypeMixin",
     "create.funProcessing.SmokingTypeMixin",
-    "create.jei.ProcessingViaFanCategoryMixin",
-    "create.kinetics.KineticBlockEntityAccessor"
+    "create.jei.ProcessingViaFanCategoryMixin"
   ],
   "server": [
   ],
