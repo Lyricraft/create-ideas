@@ -88,6 +88,14 @@ config="${mod_id}.mixins.json"
     ordering="NONE"
     side="BOTH"
 
+# Lyricore
+[[dependencies.${mod_id}]]
+    modId="lyricore"
+    type="required"
+    versionRange="[1.0.0,1.1.0)"
+    ordering="AFTER"
+    side="BOTH"
+
 # Create
 [[dependencies.${mod_id}]]
     modId="create"

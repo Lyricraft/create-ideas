@@ -27,7 +27,6 @@ public class CreateIdeasClient {
 
     @SubscribeEvent
     public static void register(RegisterPayloadHandlersEvent event) {
-        AllPayloads.register(event);
     }
 
     @SubscribeEvent

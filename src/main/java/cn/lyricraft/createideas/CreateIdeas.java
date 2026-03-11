@@ -3,6 +3,7 @@ package cn.lyricraft.createideas;
 import cn.lyricraft.createideas.configs.SyncConfig;
 import cn.lyricraft.createideas.configs.SyncConfigPayload;
 import com.simibubi.create.foundation.utility.CreateLang;
+import net.createmod.catnip.lang.LangBuilder;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
@@ -30,6 +31,7 @@ public class CreateIdeas {
 
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
+
     // Create a Deferred Register to hold Items which will all be registered under the "create_ideas" namespace
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
