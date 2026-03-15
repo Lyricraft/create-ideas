@@ -2,6 +2,7 @@ package cn.lyricraft.createideas.configs.syncConfig;
 
 import cn.lyricraft.createideas.CreateIdeas;
 import cn.lyricraft.lyricore.network.requestManager.*;
+import cn.lyricraft.lyricore.server.typeHelper.ServerTypeHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -17,7 +18,7 @@ public class SyncConfigRequestPair extends ServerRequestPair<SyncConfigRequestPa
 
     @Override
     protected void handleRequest(SyncConfigRequestBody requestBody, IPayloadContext context, ClientResponseManager.Handle handle) {
-        if (context.player().isLocalPlayer()) return;
+        if (ServerTypeHelper.isInnerServer()) return;
         String syncId = requestBody.getSyncId();
         if (syncId.isEmpty()) {
             CreateIdeas.LOGGER.error("收到无效的配置同步请求。Received invalid config sync request.");

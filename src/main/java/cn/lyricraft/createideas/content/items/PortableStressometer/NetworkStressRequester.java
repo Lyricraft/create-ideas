@@ -1,7 +1,6 @@
 package cn.lyricraft.createideas.content.items.PortableStressometer;
 
 import cn.lyricraft.lyricore.Lyricore;
-import cn.lyricraft.lyricore.LyricoreClient;
 import cn.lyricraft.lyricore.network.requestManager.AbstractRequestManager;
 import cn.lyricraft.lyricore.network.requestManager.IManagedResponseHandler;
 import cn.lyricraft.lyricore.network.requestManager.ManagedRequestBody;
@@ -53,7 +52,7 @@ public class NetworkStressRequester implements IManagedResponseHandler {
     public static boolean hasResultArrived(){
         if (!waiting) return haveResult;
         if (System.nanoTime() - requestTime > REQUEST_MIN_INTERVAL){
-            lastId = LyricoreClient.CLIENT_REQUEST_MANAGER.request(NetworkStressRequestPair.INS,
+            lastId = Lyricore.CLIENT_REQUEST_MANAGER.request(NetworkStressRequestPair.INS,
                     new NetworkStressRequestPair.NetworkStressRequestBody(lastBe.getBlockPos()), INS, true);
             requestTime = System.nanoTime();
         }

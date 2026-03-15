@@ -2,15 +2,20 @@ package cn.lyricraft.createideas.configs.syncConfig;
 
 import cn.lyricraft.createideas.CreateIdeas;
 import cn.lyricraft.createideas.configs.CommonConfig;
-import cn.lyricraft.lyricore.LyricoreClient;
+import cn.lyricraft.lyricore.Lyricore;
 import cn.lyricraft.lyricore.log.LogHelper;
 import cn.lyricraft.lyricore.network.requestManager.AbstractRequestManager;
 import cn.lyricraft.lyricore.network.requestManager.IManagedResponseHandler;
 import cn.lyricraft.lyricore.network.requestManager.ManagedRequestBody;
+import cn.lyricraft.lyricore.server.typeHelper.ServerTypeHelper;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import java.util.ArrayList;
@@ -38,10 +43,12 @@ public class SyncConfig {
         });
     }
 
-    public static void toNbt(CompoundTag nbt){
+    public static CompoundTag toNbt(){
+        CompoundTag nbt = new CompoundTag();
         values.forEach(value -> {
             value.nbtPut(nbt);
         });
+        return nbt;
     }
 
     public static void fromLocal(){
@@ -57,8 +64,14 @@ public class SyncConfig {
         });
     }
 
-    public static void reload(){
+    @SubscribeEvent
+    public static void onConfigReloading(ModConfigEvent.Reloading event){
         fromLocalWithoutRestart();
+        Lyricore.SERVER_REQUEST_MANAGER.requestToAll(
+                SyncConfigRequestPair.INS,
+                new SyncConfigRequestPair.SyncConfigRequestBody(toNbt(), SYNCER.getSyncId()),
+                SYNCER,
+                true);
     }
 
     private static final class Builder {
@@ -104,6 +117,7 @@ public class SyncConfig {
         private boolean mustMatch;
         private boolean needRestart;
         private SyncValue(String key, T defaultValue, V localValue, boolean mustMatch, boolean needRestart){
+            this.key = key;
             value = this.defaultValue = defaultValue;
             this.localValue = localValue;
             this.mustMatch = mustMatch;
@@ -167,7 +181,7 @@ public class SyncConfig {
         }
 
         protected Syncer(){
-            LyricoreClient.CLIENT_RESPONSE_MANAGER.registerRequestPair(SyncConfigRequestPair.INS);
+            Lyricore.CLIENT_RESPONSE_MANAGER.registerRequestPair(SyncConfigRequestPair.INS);
         }
 
         @Override
@@ -175,7 +189,8 @@ public class SyncConfig {
                                    IPayloadContext context,
                                    AbstractRequestManager.ResponseStatus status,
                                    AbstractRequestManager.RequestInfo info) {
-            if (context.player().isLocalPlayer()) return; // 跳过本地玩家
+            if (context == null) return;
+            if (ServerTypeHelper.isLocalPlayer(context.player())) return; // 跳过本地玩家
             if (!status.success()){
                 // 状态并非成功
                 if (status.equals(AbstractRequestManager.ResponseStatus.Status.TIMEOUT)){
@@ -195,6 +210,17 @@ public class SyncConfig {
         private void unableToSync(IPayloadContext context, String reason){
             CreateIdeas.LOGGER.warn(reason + ": " + LogHelper.playerProfile(context.player()));
             context.disconnect(Component.translatable("lyricore.multiplayer.disconnect.unable_to_sync_config"));
+        }
+
+        @SubscribeEvent
+        public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event){
+            if (ServerTypeHelper.isLocalPlayer(event.getEntity())) return;
+            else Lyricore.SERVER_REQUEST_MANAGER.request(
+                    SyncConfigRequestPair.INS,
+                    (ServerPlayer) event.getEntity(),
+                    new SyncConfigRequestPair.SyncConfigRequestBody(toNbt(), SYNCER.getSyncId()),
+                    SYNCER,
+                    true);
         }
     }
 }
