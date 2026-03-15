@@ -13,10 +13,12 @@ public class SyncConfig {
 
     // 便携式应力表
     public static final BooleanValue PORTABLE_STRESSOMETER = BUILDER
+            .needRestart()
             .define("common.utility.portableStressometer", false, CommonConfig.PORTABLE_STRESSOMETER);
 
     // 护目镜可在手上使用
     public static final BooleanValue USE_GOGGLES_IN_HAND = BUILDER
+            .needRestart()
             .define("common.tweaks.useGogglesInHand", false, CommonConfig.USE_GOGGLES_IN_HAND);
 
     public static void fromNbt(CompoundTag nbt){

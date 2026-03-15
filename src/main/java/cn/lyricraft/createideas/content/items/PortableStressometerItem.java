@@ -55,14 +55,15 @@ public class PortableStressometerItem extends Item implements IGiveHoveringInfor
                     // 有旋转
                     if (!NetworkStressRequester.checkBe(kineticBe) || (!NetworkStressRequester.isWaiting() && !NetworkStressRequester.haveResult())){
                         // 没想测
-                        CreateIdeasLang.builder().translate("gui.overlay.portable_stressometer.right_click_to_measure").style(ChatFormatting.DARK_GRAY)
+                        CreateIdeasLang.builder().space().translate("gui.overlay.portable_stressometer.right_click_to_measure")
+                                .style(ChatFormatting.DARK_GRAY)
                                 .forGoggles(tooltip);
                     } else {
                         if (!NetworkStressRequester.hasResultArrived()){
                             // 还没弄到结果
                             int percent = (int) Math.floor(((double)(System.nanoTime() - NetworkStressRequester.getStartTime()) / NetworkStressRequester.COOLDOWN) * 100);
                             percent = (Math.min(percent, 98));
-                            CreateIdeasLang.builder().translate("gui.overlay.portable_stressometer.measuring", percent).style(ChatFormatting.DARK_GRAY)
+                            CreateIdeasLang.builder().space().translate("gui.overlay.portable_stressometer.measuring", percent).style(ChatFormatting.DARK_GRAY)
                                     .forGoggles(tooltip);
                         } else {
                             // 弄到结果了
@@ -70,16 +71,16 @@ public class PortableStressometerItem extends Item implements IGiveHoveringInfor
                                 // 还没到展示时间
                                 int percent = (int) Math.floor(((double)(System.nanoTime() - NetworkStressRequester.getStartTime()) / NetworkStressRequester.COOLDOWN) * 100);
                                 percent = (Math.min(percent, 99));
-                                CreateIdeasLang.builder().translate("gui.overlay.portable_stressometer.measuring", percent).style(ChatFormatting.DARK_GRAY)
+                                CreateIdeasLang.builder().space().translate("gui.overlay.portable_stressometer.measuring", percent).style(ChatFormatting.DARK_GRAY)
                                         .forGoggles(tooltip);
                             } else {
                                 // 先看结果合不合法
                                 if(NetworkStressRequester.getCapacity() < 0 || NetworkStressRequester.getStress() < 0 ||
                                         NetworkStressRequester.getCapacity() < NetworkStressRequester.getStress()){
                                     // 结果不合法
-                                    CreateIdeasLang.builder().translate("gui.overlay.portable_stressometer.measurement_failed").style(ChatFormatting.DARK_GRAY)
+                                    CreateIdeasLang.builder().space().translate("gui.overlay.portable_stressometer.measurement_failed").style(ChatFormatting.DARK_GRAY)
                                             .forGoggles(tooltip);
-                                    CreateIdeasLang.builder().translate("gui.overlay.portable_stressometer.right_click_to_remeasure").style(ChatFormatting.DARK_GRAY)
+                                    CreateIdeasLang.builder().space().translate("gui.overlay.portable_stressometer.right_click_to_remeasure").style(ChatFormatting.DARK_GRAY)
                                             .forGoggles(tooltip);
                                 } else {
                                     // 结果合法
@@ -140,9 +141,11 @@ public class PortableStressometerItem extends Item implements IGiveHoveringInfor
 
     @Override
     public @NotNull InteractionResult useOn(UseOnContext context){
+        if(!SyncConfig.PORTABLE_STRESSOMETER.get()) return InteractionResult.PASS;
         if(context.getLevel().getBlockEntity(context.getClickedPos()) instanceof KineticBlockEntity kineticBe){
-            if (kineticBe.getSpeed() == 0) return InteractionResult.PASS;            NetworkStressRequester.start();
-            return InteractionResult.CONSUME;
+            if (kineticBe.getSpeed() == 0) return InteractionResult.SUCCESS_NO_ITEM_USED;
+            NetworkStressRequester.start();
+            return InteractionResult.SUCCESS_NO_ITEM_USED;
         } else return InteractionResult.PASS;
     }
 }

@@ -11,8 +11,8 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 public class NetworkStressRequester implements IManagedResponseHandler {
     public static final NetworkStressRequester INS = new NetworkStressRequester();
 
-    public static final long REQUEST_MIN_INTERVAL = 1000 * 1_000_000L; // 单位：纳秒（乘号前面是毫秒）
-    public static final long COOLDOWN = 1250 * 1_000_000L; // 单位：纳秒（务必大于等于 REQUEST_MIN_INTERVAL）
+    public static final long REQUEST_MIN_INTERVAL = 500 * 1_000_000L; // 单位：纳秒（乘号前面是毫秒）
+    public static final long COOLDOWN = 600 * 1_000_000L; // 单位：纳秒（务必大于等于 REQUEST_MIN_INTERVAL）
 
     private static KineticBlockEntity lastBe;
     private static boolean waiting = false;

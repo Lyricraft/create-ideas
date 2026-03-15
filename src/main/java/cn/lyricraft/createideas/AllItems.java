@@ -1,8 +1,14 @@
 package cn.lyricraft.createideas;
 
+import cn.lyricraft.createideas.configs.SyncConfig;
 import cn.lyricraft.createideas.content.items.PortableStressometerItem;
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllCreativeModeTabs;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -18,5 +24,17 @@ public class AllItems {
 
     public static void register(IEventBus modBus){
         ITEMS.register(modBus);
+    }
+
+    // 创造模式标签事件
+    public static void addToCreativeTabs(BuildCreativeModeTabContentsEvent event) {
+        // 机械动力 标签
+        if (event.getTabKey() == AllCreativeModeTabs.BASE_CREATIVE_TAB.getKey()) {
+            // 便携式应力表
+            if (SyncConfig.PORTABLE_STRESSOMETER.get()) event.insertAfter(
+                    com.simibubi.create.AllBlocks.STRESSOMETER.asStack(),
+                    AllItems.PORTABLE_STRESSOMETER_ITEM.toStack(),
+                    CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+        }
     }
 }
