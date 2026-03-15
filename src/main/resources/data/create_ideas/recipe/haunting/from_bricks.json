@@ -12,8 +12,8 @@
   ],
   "neoforge:conditions": [
     {
-      "type": "create_ideas:config_enabled",
-      "path": "common.recipes.hauntingRecipes.hauntingRecipeBricks"
+      "type": "lyricore:boolean_config",
+      "path": "create_ideas:server.recipes.hauntingRecipes.hauntingRecipeBricks"
     }
   ]
 }
