@@ -1,6 +1,6 @@
 package cn.lyricraft.createideas;
 
-import cn.lyricraft.createideas.configs.SyncConfig;
+import cn.lyricraft.createideas.configs.ServerConfig;
 import cn.lyricraft.createideas.content.items.PortableStressometerItem;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllCreativeModeTabs;
@@ -31,7 +31,7 @@ public class AllItems {
         // 机械动力 标签
         if (event.getTabKey() == AllCreativeModeTabs.BASE_CREATIVE_TAB.getKey()) {
             // 便携式应力表
-            if (SyncConfig.PORTABLE_STRESSOMETER.get()) event.insertAfter(
+            if (ServerConfig.PORTABLE_STRESSOMETER.get()) event.insertAfter(
                     com.simibubi.create.AllBlocks.STRESSOMETER.asStack(),
                     AllItems.PORTABLE_STRESSOMETER_ITEM.toStack(),
                     CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);

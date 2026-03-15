@@ -5,7 +5,7 @@ import cn.lyricraft.createideas.CreateIdeas;
 import cn.lyricraft.createideas.CreateIdeasLang;
 import cn.lyricraft.createideas.api.equipment.goggles.IGiveCustomOverlayIcon;
 import cn.lyricraft.createideas.api.equipment.goggles.IGiveHoveringInformation;
-import cn.lyricraft.createideas.configs.SyncConfig;
+import cn.lyricraft.createideas.configs.ServerConfig;
 import cn.lyricraft.createideas.content.items.PortableStressometer.NetworkStressRequester;
 import com.simibubi.create.content.kinetics.base.IRotate;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
@@ -34,7 +34,7 @@ public class PortableStressometerItem extends Item implements IGiveHoveringInfor
     @Override
     public boolean addToTooltip(List<Component> tooltip, InformationContext context){
         // 检查此 idea 是否启用
-        if (!SyncConfig.PORTABLE_STRESSOMETER.get()) return false;
+        if (!ServerConfig.PORTABLE_STRESSOMETER.get()) return false;
         // 以下逻辑在双手皆持时只会处理一次
         // 判断目标是否继承 KineticBlockEntity
         if((context.hand() == InteractionHand.MAIN_HAND || !(context.otherHand().getItem() instanceof PortableStressometerItem))
@@ -141,7 +141,7 @@ public class PortableStressometerItem extends Item implements IGiveHoveringInfor
 
     @Override
     public @NotNull InteractionResult useOn(UseOnContext context){
-        if(!SyncConfig.PORTABLE_STRESSOMETER.get()) return InteractionResult.PASS;
+        if(!ServerConfig.PORTABLE_STRESSOMETER.get()) return InteractionResult.PASS;
         if(context.getLevel().getBlockEntity(context.getClickedPos()) instanceof KineticBlockEntity kineticBe){
             if (kineticBe.getSpeed() == 0) return InteractionResult.SUCCESS_NO_ITEM_USED;
             NetworkStressRequester.start();

@@ -1,6 +1,5 @@
 package cn.lyricraft.createideas;
 
-import cn.lyricraft.createideas.configs.SyncConfigPayload;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;

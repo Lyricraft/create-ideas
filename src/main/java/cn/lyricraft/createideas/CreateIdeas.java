@@ -1,7 +1,5 @@
 package cn.lyricraft.createideas;
 
-import cn.lyricraft.createideas.configs.SyncConfig;
-import cn.lyricraft.createideas.configs.SyncConfigPayload;
 import com.simibubi.create.foundation.utility.CreateLang;
 import net.createmod.catnip.lang.LangBuilder;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -67,6 +65,5 @@ public class CreateIdeas {
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         LOGGER.info(MOD_ID + " is on server starting.");
-        SyncConfig.fromLocal();
     }
 }

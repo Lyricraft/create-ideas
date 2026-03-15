@@ -1,7 +1,6 @@
 package cn.lyricraft.createideas;
 
-import cn.lyricraft.createideas.configs.CommonConfig;
-import cn.lyricraft.createideas.configs.SyncConfig;
+import cn.lyricraft.createideas.configs.ServerConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.config.ModConfig.Type;
@@ -14,13 +13,13 @@ import java.util.List;
 public class AllConfigs {
 
     public static void register(ModContainer modContainer) {
-        modContainer.registerConfig(Type.COMMON, CommonConfig.SPEC);
+        modContainer.registerConfig(Type.SERVER, ServerConfig.SPEC);
     }
 
     public static ModConfigSpec specFromType(ModConfig.Type type) {
         switch (type){
-            case Type.COMMON -> {
-                return CommonConfig.SPEC;
+            case Type.SERVER -> {
+                return ServerConfig.SPEC;
             }
             default -> {
                 return null;
@@ -30,8 +29,8 @@ public class AllConfigs {
 
     public static ModConfigSpec specFromType(String typeName) {
         switch (typeName){
-            case "common" -> {
-                return CommonConfig.SPEC;
+            case "server" -> {
+                return ServerConfig.SPEC;
             }
             default -> {
                 return null;

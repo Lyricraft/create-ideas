@@ -3,7 +3,7 @@ package cn.lyricraft.createideas.mixin.create.goggles;
 import cn.lyricraft.createideas.CreateIdeas;
 import cn.lyricraft.createideas.api.equipment.goggles.IGiveCustomOverlayIcon;
 import cn.lyricraft.createideas.api.equipment.goggles.IGiveHoveringInformation;
-import cn.lyricraft.createideas.configs.SyncConfig;
+import cn.lyricraft.createideas.configs.ServerConfig;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
@@ -48,7 +48,7 @@ public class GoggleOverlayRendererMixin {
         ItemStack mainHand = mc.player.getItemInHand(InteractionHand.MAIN_HAND);
         ItemStack offHand = mc.player.getItemInHand((InteractionHand.OFF_HAND));
         // 提前处理 goggleUsed，因为有些 giveInformation 的工具可能根据是否用了护目镜调整行为
-        if (SyncConfig.USE_GOGGLES_IN_HAND.get() && !goggleUsed)
+        if (ServerConfig.USE_GOGGLES_IN_HAND.get() && !goggleUsed)
             goggleUsed = (!mainHand.isEmpty() && mainHand.getItem() instanceof GogglesItem)
                     || (!offHand.isEmpty() && offHand.getItem() instanceof GogglesItem);
         // 现在处理主手
@@ -57,7 +57,7 @@ public class GoggleOverlayRendererMixin {
             // 是护目镜还是其他东西？
             if (mainHand.getItem() instanceof GogglesItem){
                 // idea 启用了没？是不是已经显示过护目镜信息了？有没有护目镜信息？
-                if (SyncConfig.USE_GOGGLES_IN_HAND.get() && !goggleEffect && hasGoggleInformation.get()){
+                if (ServerConfig.USE_GOGGLES_IN_HAND.get() && !goggleEffect && hasGoggleInformation.get()){
                     ((IHaveGoggleInformation) be).addToGoggleTooltip(tooltip, isShifting); // 毋须担心这里的类型转换问题，使用原始传进来的 goggleEffect 判断足矣
                     goggleEffect = true;
                     putItem = true;
@@ -89,7 +89,7 @@ public class GoggleOverlayRendererMixin {
             // 是护目镜还是其他东西？
             if (offHand.getItem() instanceof GogglesItem){
                 // idea 启用了没？是不是已经显示过护目镜信息了？有没有护目镜信息？
-                if (SyncConfig.USE_GOGGLES_IN_HAND.get() && !goggleEffect && hasGoggleInformation.get()){
+                if (ServerConfig.USE_GOGGLES_IN_HAND.get() && !goggleEffect && hasGoggleInformation.get()){
                     ((IHaveGoggleInformation) be).addToGoggleTooltip(tooltip, isShifting); // 毋须担心这里的类型转换问题，使用原始传进来的 goggleEffect 判断足矣
                     // goggleEffect = true;
                     // putItem = true;
