@@ -33,5 +33,7 @@
   "create_ideas.gui.overlay.portable_stressometer.measurement_failed": "Measurement Failed!",
   "create_ideas.gui.overlay.portable_stressometer.right_click_to_remeasure": "Right-click to Try Again",
 
+  "lyricore.multiplayer.disconnect.unable_to_sync_config": "Unable to sync Create: Ideas! config with server",
+
   "create_ideas.jei.tooltip.recipe.extendedBy": "Recipe Extended By: %s"
 }

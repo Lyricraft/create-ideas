@@ -1,6 +1,6 @@
 package cn.lyricraft.createideas.mixin.create.funProcessing;
 
-import cn.lyricraft.createideas.configs.ServerConfig;
+import cn.lyricraft.createideas.configs.CommonConfig;
 import cn.lyricraft.createideas.Constants;
 import cn.lyricraft.createideas.algorithms.RecipeAlgorithms;
 import com.simibubi.create.AllRecipeTypes;
@@ -24,7 +24,7 @@ public abstract class SmokingTypeMixin implements FanProcessingType {
     public void addExperienceNuggetToResult(ItemStack stack, Level level, CallbackInfoReturnable<List<ItemStack>> cir) {
         List<ItemStack> result = cir.getReturnValue();
         // 检查配置中此 idea 是否启用
-        if (ServerConfig.BULK_SMOKING_EXTRA_EXP.isFalse()) return;
+        if (CommonConfig.BULK_SMOKING_EXTRA_EXP.isFalse()) return;
         // 如果本身没有产物，则不改变
         if (result.isEmpty()) return;
         // 如果产物本身包含经验颗粒，则不改变

@@ -1,6 +1,6 @@
 package cn.lyricraft.createideas.mixin.create.jei;
 
-import cn.lyricraft.createideas.configs.ServerConfig;
+import cn.lyricraft.createideas.configs.CommonConfig;
 import cn.lyricraft.createideas.Constants;
 import cn.lyricraft.createideas.algorithms.RecipeAlgorithms;
 import cn.lyricraft.createideas.compat.jei.CreateIdeasJei;
@@ -28,9 +28,9 @@ public abstract class ProcessingViaFanCategoryMixin<T extends Recipe<?>> extends
     @Inject(method = "setRecipe", at = @At("TAIL"))
     public void addExpSlotToSatRecipe(IRecipeLayoutBuilder builder, T recipe, IFocusGroup focuses, CallbackInfo ci) {
         // 只处理烟熏、熔炼、高炉配方，并检查配置
-        if (!(recipe instanceof SmokingRecipe && ServerConfig.BULK_SMOKING_EXTRA_EXP.isTrue())
-                && !(recipe instanceof SmeltingRecipe && ServerConfig.BULK_BLASTING_EXTRA_EXP.isTrue())
-                && !(recipe instanceof BlastingRecipe && ServerConfig.BULK_BLASTING_EXTRA_EXP.isTrue())) return;
+        if (!(recipe instanceof SmokingRecipe && CommonConfig.BULK_SMOKING_EXTRA_EXP.isTrue())
+                && !(recipe instanceof SmeltingRecipe && CommonConfig.BULK_BLASTING_EXTRA_EXP.isTrue())
+                && !(recipe instanceof BlastingRecipe && CommonConfig.BULK_BLASTING_EXTRA_EXP.isTrue())) return;
         // 防止产物本身为经验颗粒
         if ((getResultItem(recipe).getItem() instanceof ExperienceNuggetItem)) return;
         // 获取配方经验

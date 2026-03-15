@@ -13,7 +13,7 @@
   "neoforge:conditions": [
     {
       "type": "lyricore:boolean_config",
-      "path": "create_ideas:server.recipes.hauntingRecipes.hauntingRecipeBricks"
+      "path": "create_ideas:common.recipes.hauntingRecipes.hauntingRecipeBricks"
     }
   ]
 }
