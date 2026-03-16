@@ -3,6 +3,7 @@
   "package": "cn.lyricraft.createideas.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "create.depot.DepotBehaviourMixin",
     "create.funProcessing.BlastingTypeMixin",
     "create.funProcessing.SmokingTypeMixin",
     "create.jei.ProcessingViaFanCategoryMixin"

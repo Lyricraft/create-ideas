@@ -17,7 +17,13 @@ public class CommonConfig {
     public static final ModConfigSpec.BooleanValue PORTABLE_STRESSOMETER = BUILDER
             .comment("便携式应力表")
             .worldRestart()
-            .define("portableStressometer", false);
+            .define("portableStressometer", true);
+
+    // 坚实置物台
+    public static final ModConfigSpec.BooleanValue SOLID_DEPOT = BUILDER
+            .comment("坚实置物台")
+            .worldRestart()
+            .define("solidDepot", true);
 
     // }实用
     static {
@@ -106,8 +112,41 @@ public class CommonConfig {
     public static final ModConfigSpec.BooleanValue USE_GOGGLES_IN_HAND = BUILDER
             .comment("护目镜可在手上使用：将工程师护目镜拿在主手或副手上时，也可以生效。",
                     "Engineer's goggles would also take effect when held in main hand or off hand.")
-            .worldRestart()
             .define("useGogglesInHand", true);
+
+    // 置物台机制{
+    static {
+        BUILDER.comment("置物台机制")
+                .push("depotFeatures");
+    }
+
+    // （置物台类型枚举）
+    public enum DepotType{
+        DISABLED, // 关闭
+        SOLID_DEPOT_ONLY, // 仅坚实置物台
+        ALL // 始终启用
+    }
+
+    // 自动堆叠
+    public static final ModConfigSpec.EnumValue<DepotType> DEPOT_AUTO_MERGING = BUILDER
+            .comment("自动合并：当置物台上有相同类型的物品且未达到堆叠上限时，自动将后来物品堆叠到置物台上。",
+                    "可选值：DISABLED——关闭，SOLID_DEPOT_ONLY——仅坚实置物台，ALL——始终启用。",
+                    "When there are already items of the same type on the depot and the stack is not full, new items would be automatically stacked on the depot.")
+            .worldRestart()
+            .defineEnum("depotAutoMerging", DepotType.SOLID_DEPOT_ONLY);
+
+    // 物品推动
+    public static final ModConfigSpec.EnumValue<DepotType> DEPOT_ITEM_PUSHING = BUILDER
+            .comment("物品推动：传送带向置物台输送物品时，如置物台上已有物品且无法堆叠，前方有同向传送带等合法去处时，后来物品可将目前物品推向去处，并使自身到达置物台上。",
+                    "可选值：DISABLED——关闭，SOLID_DEPOT_ONLY——仅坚实置物台，ALL——始终启用。",
+                    "When a conveyor belt is trying to put items on the depot, if there are already items on the depot and they cannot be stacked, and there are valid destinations in the front such as conveyor belts facing the same direction, new items would push current items to the destination and take their place on the depot.")
+            .worldRestart()
+            .defineEnum("depotItemPushing", DepotType.SOLID_DEPOT_ONLY);
+
+    // 微调{
+    static {
+        BUILDER.pop();
+    }
 
     public static final ModConfigSpec SPEC = BUILDER.build();
 
