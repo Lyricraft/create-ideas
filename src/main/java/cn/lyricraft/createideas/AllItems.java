@@ -1,8 +1,7 @@
 package cn.lyricraft.createideas;
 
-import cn.lyricraft.createideas.configs.CommonConfig;
 import cn.lyricraft.createideas.configs.syncConfig.SyncConfig;
-import cn.lyricraft.createideas.content.items.PortableStressometerItem;
+import cn.lyricraft.createideas.content.tools.portableStressometer.PortableStressometerItem;
 import com.simibubi.create.AllCreativeModeTabs;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;

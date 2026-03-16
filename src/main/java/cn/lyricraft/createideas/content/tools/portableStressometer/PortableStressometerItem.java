@@ -1,4 +1,4 @@
-package cn.lyricraft.createideas.content.items;
+package cn.lyricraft.createideas.content.tools.portableStressometer;
 
 import cn.lyricraft.createideas.AllItems;
 import cn.lyricraft.createideas.CreateIdeasLang;
@@ -6,7 +6,6 @@ import cn.lyricraft.createideas.api.equipment.goggles.IGiveCustomOverlayIcon;
 import cn.lyricraft.createideas.api.equipment.goggles.IGiveHoveringInformation;
 import cn.lyricraft.createideas.configs.CommonConfig;
 import cn.lyricraft.createideas.configs.syncConfig.SyncConfig;
-import cn.lyricraft.createideas.content.items.PortableStressometer.NetworkStressRequester;
 import com.simibubi.create.content.kinetics.base.IRotate;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.content.kinetics.gauge.SpeedGaugeBlockEntity;

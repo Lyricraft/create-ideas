@@ -1,4 +1,4 @@
-package cn.lyricraft.createideas.content.items.PortableStressometer;
+package cn.lyricraft.createideas.content.tools.portableStressometer;
 
 import cn.lyricraft.lyricore.Lyricore;
 import cn.lyricraft.lyricore.network.requestManager.AbstractRequestManager;
