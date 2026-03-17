@@ -4,8 +4,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "create.depot.BlockEntityBehaviourAccessor",
-    "create.depot.DepotBehaviourAccessor",
     "create.depot.DepotBehaviourMixin",
+    "create.depot.DepotBlockMixin",
     "create.funProcessing.BlastingTypeMixin",
     "create.funProcessing.SmokingTypeMixin",
     "create.jei.ProcessingViaFanCategoryMixin"

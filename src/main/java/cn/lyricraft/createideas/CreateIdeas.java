@@ -1,6 +1,7 @@
 package cn.lyricraft.createideas;
 
 import cn.lyricraft.createideas.configs.syncConfig.SyncConfig;
+import com.simibubi.create.AllCreativeModeTabs;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import org.slf4j.Logger;
 
@@ -35,9 +36,11 @@ public class CreateIdeas {
     public CreateIdeas(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
+        CREATE_REGISTRATE.registerEventListeners(modEventBus);
         // Register the Deferred Register to the mod event bus so blocks get registered
         // BLOCKS.register(modEventBus);
         CIBlocks.register(modEventBus);
+        CIBlockEntityTypes.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         CIItems.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered

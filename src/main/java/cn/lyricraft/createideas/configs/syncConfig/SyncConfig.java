@@ -27,6 +27,11 @@ public class SyncConfig {
     private static final Builder BUILDER = new Builder();
     public static Syncer SYNCER = new Syncer();
 
+    // 坚实置物台
+    public static final BooleanValue SOLID_DEPOT = BUILDER
+            .needRestart()
+            .define("common.utility.solidDepot", false, CommonConfig.SOLID_DEPOT);
+
     // 便携式应力表
     public static final BooleanValue PORTABLE_STRESSOMETER = BUILDER
             .needRestart()

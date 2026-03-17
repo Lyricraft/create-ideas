@@ -1,3 +1,6 @@
+# dataGen
+src/generated
+
 # eclipse
 bin
 *.launch

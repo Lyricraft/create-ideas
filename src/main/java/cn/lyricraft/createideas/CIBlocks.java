@@ -1,5 +1,6 @@
 package cn.lyricraft.createideas;
 
+import com.simibubi.create.AllCreativeModeTabs;
 import com.simibubi.create.AllDisplaySources;
 import com.simibubi.create.AllMountedStorageTypes;
 import com.simibubi.create.content.logistics.depot.DepotBlock;
@@ -7,6 +8,9 @@ import com.simibubi.create.content.logistics.depot.MountedDepotInteractionBehavi
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -22,6 +26,10 @@ public class CIBlocks {
 
     public static void register(IEventBus event) {
         BLOCKS.register(event);
+    }
+
+    static {
+        CreateIdeas.CREATE_REGISTRATE.setCreativeTab(AllCreativeModeTabs.BASE_CREATIVE_TAB);
     }
 
     public static final BlockEntry<DepotBlock> SOLID_DEPOT = CreateIdeas.CREATE_REGISTRATE.block("solid_depot", DepotBlock::new)

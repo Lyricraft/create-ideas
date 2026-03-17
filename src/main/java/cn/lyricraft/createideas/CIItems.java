@@ -2,6 +2,7 @@ package cn.lyricraft.createideas;
 
 import cn.lyricraft.createideas.configs.syncConfig.SyncConfig;
 import cn.lyricraft.createideas.content.tools.portableStressometer.PortableStressometerItem;
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllCreativeModeTabs;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -28,6 +29,11 @@ public class CIItems {
     public static void addToCreativeTabs(BuildCreativeModeTabContentsEvent event) {
         // 机械动力 标签
         if (event.getTabKey() == AllCreativeModeTabs.BASE_CREATIVE_TAB.getKey()) {
+            // 坚实置物台
+            if (SyncConfig.SOLID_DEPOT.get()) event.insertAfter(
+                    AllBlocks.WEIGHTED_EJECTOR.asStack(),
+                    CIBlocks.SOLID_DEPOT.asStack(),
+                    CreativeModeTab.TabVisibility.PARENT_TAB_ONLY);
             // 便携式应力表
             if (SyncConfig.PORTABLE_STRESSOMETER.get()) event.insertAfter(
                     com.simibubi.create.AllBlocks.STRESSOMETER.asStack(),

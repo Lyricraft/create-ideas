@@ -1,0 +1,6 @@
+{
+  "parent": "create:block/depot/block",
+  "textures": {
+    "2": "create_ideas:block/solid_depot_top"
+  }
+}

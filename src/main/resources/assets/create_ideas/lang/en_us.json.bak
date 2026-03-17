@@ -25,6 +25,7 @@
   "create_ideas.configuration.bulkSmokingExtraExp": "Bulk Smoking",
   "create_ideas.configuration.bulkSmokingExtraExp.tooltip": "Enable the feature for Bulk Smoking.",
 
+  "block.create_ideas.solid_depot": "Solid Depot",
   "item.create_ideas.portable_stressometer": "Portable Stressometer",
 
   "create_ideas.gui.overlay.portable_gauge.info_header": "Portable Gauge Information:",

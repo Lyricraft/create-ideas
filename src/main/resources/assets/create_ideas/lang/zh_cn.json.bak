@@ -25,6 +25,7 @@
   "create_ideas.configuration.bulkSmokingExtraExp": "批量烟熏",
   "create_ideas.configuration.bulkSmokingExtraExp.tooltip": "使鼓风机批量烟熏能生成经验颗粒。",
 
+  "block.create_ideas.solid_depot": "坚实置物台",
   "item.create_ideas.portable_stressometer": "便携式应力表",
 
   "create_ideas.gui.overlay.portable_gauge.info_header": "便携式仪表信息：",
