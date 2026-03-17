@@ -1,6 +1,7 @@
 package cn.lyricraft.createideas;
 
 import cn.lyricraft.createideas.configs.syncConfig.SyncConfig;
+import com.simibubi.create.foundation.data.CreateRegistrate;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -25,6 +26,8 @@ public class CreateIdeas {
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    public static final CreateRegistrate CREATE_REGISTRATE = CreateRegistrate.create(MOD_ID);
+
     // Create a Deferred Register to hold Items which will all be registered under the "create_ideas" namespace
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -34,6 +37,7 @@ public class CreateIdeas {
         modEventBus.addListener(this::commonSetup);
         // Register the Deferred Register to the mod event bus so blocks get registered
         // BLOCKS.register(modEventBus);
+        AllBlocks.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         AllItems.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
