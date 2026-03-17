@@ -10,7 +10,7 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class AllItems {
+public class CIItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(CreateIdeas.MOD_ID);
 
     // Item Entries
@@ -31,7 +31,7 @@ public class AllItems {
             // 便携式应力表
             if (SyncConfig.PORTABLE_STRESSOMETER.get()) event.insertAfter(
                     com.simibubi.create.AllBlocks.STRESSOMETER.asStack(),
-                    AllItems.PORTABLE_STRESSOMETER_ITEM.toStack(),
+                    CIItems.PORTABLE_STRESSOMETER_ITEM.toStack(),
                     CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
         }
     }

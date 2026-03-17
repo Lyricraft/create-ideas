@@ -37,9 +37,9 @@ public class CreateIdeas {
         modEventBus.addListener(this::commonSetup);
         // Register the Deferred Register to the mod event bus so blocks get registered
         // BLOCKS.register(modEventBus);
-        AllBlocks.register(modEventBus);
+        CIBlocks.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
-        AllItems.register(modEventBus);
+        CIItems.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         // CREATIVE_MODE_TABS.register(modEventBus);
 
@@ -51,7 +51,7 @@ public class CreateIdeas {
         NeoForge.EVENT_BUS.register(SyncConfig.SYNCER);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
-        AllConfigs.register(modContainer);
+        CIConfigs.register(modContainer);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

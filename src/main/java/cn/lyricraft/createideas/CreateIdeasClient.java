@@ -11,7 +11,6 @@ import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = CreateIdeas.MOD_ID, dist = Dist.CLIENT)
@@ -39,6 +38,6 @@ public class CreateIdeasClient {
     // 加创造模式标签事件
     @SubscribeEvent
     public static void buildContents(BuildCreativeModeTabContentsEvent event) {
-        AllItems.addToCreativeTabs(event);
+        CIItems.addToCreativeTabs(event);
     }
 }

@@ -8,7 +8,7 @@ import net.neoforged.fml.config.ModConfig.Type;
 
 
 
-public class AllConfigs {
+public class CIConfigs {
     private static ConfigHelperRegistrar helperRegistrar = ConfigHelper.getRegistrar(CreateIdeas.MOD_NAMESPACE);
     static {
         helperRegistrar.register(Type.COMMON, CommonConfig.SPEC);

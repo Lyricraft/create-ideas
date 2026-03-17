@@ -1,6 +1,6 @@
 package cn.lyricraft.createideas.content.tools.portableStressometer;
 
-import cn.lyricraft.createideas.AllItems;
+import cn.lyricraft.createideas.CIItems;
 import cn.lyricraft.createideas.CreateIdeasLang;
 import cn.lyricraft.createideas.api.equipment.goggles.IGiveCustomOverlayIcon;
 import cn.lyricraft.createideas.api.equipment.goggles.IGiveHoveringInformation;
@@ -128,7 +128,7 @@ public class PortableStressometerItem extends Item implements IGiveHoveringInfor
 
     @Override
     public ItemStack getIcon(OverlayIconContext context){
-        return AllItems.PORTABLE_STRESSOMETER_ITEM.toStack();
+        return CIItems.PORTABLE_STRESSOMETER_ITEM.toStack();
     }
 
     public void noTheoreticalSpeed(List<Component> tooltip){
