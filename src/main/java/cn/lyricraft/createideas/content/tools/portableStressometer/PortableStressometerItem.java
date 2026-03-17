@@ -128,7 +128,7 @@ public class PortableStressometerItem extends Item implements IGiveHoveringInfor
 
     @Override
     public ItemStack getIcon(OverlayIconContext context){
-        return CIItems.PORTABLE_STRESSOMETER_ITEM.toStack();
+        return CIItems.PORTABLE_STRESSOMETER_ITEM.asStack();
     }
 
     public void noTheoreticalSpeed(List<Component> tooltip){

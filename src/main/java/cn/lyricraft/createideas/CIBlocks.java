@@ -22,14 +22,11 @@ import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 
 public class CIBlocks {
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(CreateIdeas.MOD_ID);
 
-    public static void register(IEventBus event) {
-        BLOCKS.register(event);
-    }
+    public static void register(IEventBus event) {}
 
     static {
-        CreateIdeas.CREATE_REGISTRATE.setCreativeTab(AllCreativeModeTabs.BASE_CREATIVE_TAB);
+        CreateIdeas.CREATE_REGISTRATE.setCreativeTab(null);
     }
 
     public static final BlockEntry<DepotBlock> SOLID_DEPOT = CreateIdeas.CREATE_REGISTRATE.block("solid_depot", DepotBlock::new)

@@ -1,0 +1,9 @@
+{
+  "create_ideas.gui.overlay.portable_gauge.info_header": "Portable Gauge Information:",
+  "create_ideas.gui.overlay.portable_stressometer.measurement_failed": "Measurement Failed!",
+  "create_ideas.gui.overlay.portable_stressometer.measuring": "Measuring (%s%%)",
+  "create_ideas.gui.overlay.portable_stressometer.right_click_to_measure": "Right-click to Measure",
+  "create_ideas.gui.overlay.portable_stressometer.right_click_to_remeasure": "Right-click to Try Again",
+  "create_ideas.jei.tooltip.recipe.extendedBy": "Recipe Extended By: %s",
+  "create_ideas.multiplayer.disconnect.unable_to_sync_config": "Unable to sync Create: Ideas! config with server"
+}

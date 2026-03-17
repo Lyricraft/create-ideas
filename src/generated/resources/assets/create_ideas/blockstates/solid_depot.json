@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "create_ideas:block/solid_depot/block"
+    }
+  }
+}

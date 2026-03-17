@@ -214,7 +214,7 @@ public class SyncConfig {
 
         private void unableToSync(IPayloadContext context, String reason){
             CreateIdeas.LOGGER.warn(reason + ": " + LogHelper.playerProfile(context.player()));
-            context.disconnect(Component.translatable("lyricore.multiplayer.disconnect.unable_to_sync_config"));
+            context.disconnect(Component.translatable("create_ideas.multiplayer.disconnect.unable_to_sync_config"));
         }
 
         @SubscribeEvent

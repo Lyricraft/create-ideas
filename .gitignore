@@ -1,5 +1,6 @@
-# dataGen
-src/generated
+
+# datagen
+src/generated/resources/.cache
 
 # eclipse
 bin
