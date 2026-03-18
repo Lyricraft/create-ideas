@@ -41,27 +41,27 @@ public class enUsLanProvider extends LanguageProvider {
         add(commonConfig.file(), "Create: Ideas!");
         add(commonConfig.fileTitle(), "Create: Ideas!");
         add(commonConfig.section("utility"), "Utility");
-        add(commonConfig.sectionTooltip("utility"), "Some practical new tools and adjustments for them.");
+        add(commonConfig.tooltip(), "Some practical new tools and adjustments for them.");
         add(commonConfig.cv(CommonConfig.PORTABLE_STRESSOMETER), "Portable Stressometer");
-        add(commonConfig.cvTooltip(CommonConfig.PORTABLE_STRESSOMETER), "Allow to craft portable stressometer, as well as use it.");
+        add(commonConfig.tooltip(), "Allow to craft portable stressometer, as well as use it.");
         add(commonConfig.section("recipes"), "Recipes");
-        add(commonConfig.sectionTooltip("recipes"), "Some new recipes added and some tweaks for current recipes.");
+        add(commonConfig.tooltip(), "Some new recipes added and some tweaks for current recipes.");
         add(commonConfig.cv(CommonConfig.BLAST_RECIPES_RAW_ORE_BLOCKS), "Blasting Raw Ore Blocks Recipe");
-        add(commonConfig.cvTooltip(CommonConfig.BLAST_RECIPES_RAW_ORE_BLOCKS), "Enables direct blasting of block of raw copper, raw iron and raw gold. This also extends bulk blasting to process these raw ore blocks.");
+        add(commonConfig.tooltip(), "Enables direct blasting of block of raw copper, raw iron and raw gold. This also extends bulk blasting to process these raw ore blocks.");
         add(commonConfig.section("hauntingRecipes"), "Haunting Recipes");
-        add(commonConfig.sectionTooltip("hauntingRecipes"), "Some new bulk haunting recipes.");
+        add(commonConfig.tooltip(), "Some new bulk haunting recipes.");
         add(commonConfig.cv(CommonConfig.HAUNTING_RECIPE_AMETHYST_SHARD), "Haunting Amethyst Shard");
-        add(commonConfig.cvTooltip(CommonConfig.HAUNTING_RECIPE_AMETHYST_SHARD), "Enable the recipe for bulk haunting amethyst shard into echo shard.");
+        add(commonConfig.tooltip(), "Enable the recipe for bulk haunting amethyst shard into echo shard.");
         add(commonConfig.cv(CommonConfig.HAUNTING_RECIPE_BRICKS), "Haunting Bricks");
-        add(commonConfig.cvTooltip(CommonConfig.HAUNTING_RECIPE_BRICKS), "Enable the recipe for bulk haunting bricks into red nether bricks.");
+        add(commonConfig.tooltip(), "Enable the recipe for bulk haunting bricks into red nether bricks.");
         add(commonConfig.cv(CommonConfig.HAUNTING_RECIPE_LAPIS_BLOCK), "Haunting Block of Lapis");
-        add(commonConfig.cvTooltip(CommonConfig.HAUNTING_RECIPE_LAPIS_BLOCK), "Enable the recipe for bulk block of lapis into prismarine and prismarine crystals.");
+        add(commonConfig.tooltip(), "Enable the recipe for bulk block of lapis into prismarine and prismarine crystals.");
         add(commonConfig.section("bulkProcessingExtraExp"), "Bulk Processing Extra Experience Nuggets");
-        add(commonConfig.sectionTooltip("bulkProcessingExtraExp"), "Allow to generate extra experience nugget when bulk item processing.");
+        add(commonConfig.tooltip(), "Allow to generate extra experience nugget when bulk item processing.");
         add(commonConfig.cv(CommonConfig.BULK_BLASTING_EXTRA_EXP), "Bulk Blasting");
-        add(commonConfig.cvTooltip(CommonConfig.BULK_BLASTING_EXTRA_EXP), "Enable the feature for Bulk Blasting.");
+        add(commonConfig.tooltip(), "Enable the feature for Bulk Blasting.");
         add(commonConfig.cv(CommonConfig.BULK_SMOKING_EXTRA_EXP), "Bulk Smoking");
-        add(commonConfig.cvTooltip(CommonConfig.BULK_SMOKING_EXTRA_EXP), "Enable the feature for Bulk Smoking.");
+        add(commonConfig.tooltip(), "Enable the feature for Bulk Smoking.");
 
     }
 }
