@@ -22,7 +22,10 @@ repositories {
 
     // Lyricore
     mavenLocal()
-    maven { url = "https://maven.pkg.github.com/lyricraft/lyricore" }
+    maven {
+        url = "https://maven.pkg.github.com/lyricraft/lyricore"
+        credentials { username = "public"; password = "public" }
+    }
 
     // Create
     maven { url = "https://maven.createmod.net" } // Create, Ponder, Flywheel
